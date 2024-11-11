@@ -63,10 +63,12 @@ console.log({user})
       <div>
         {user ?
           <div className='flex items-center gap-3'>
-            <Link to={'/create-trip'}>
-            <Button className="cursor-pointer">Get Started, It's Free</Button>
-            </Link>   
-            <Popover>
+        <div className='flex items-center gap-3'>
+          <a href="/create-trip"><Button variant="outline" className="rounded-full text-black  ">+ Create Trip</Button></a>
+            <a href="/my-trips"><Button variant="outline" className="rounded-full text-black" >My Trips</Button></a>
+         
+        </div>
+           <Popover>
               <PopoverTrigger>
 
                 <img src='/user.png' className="h-[35px] w-[35px] rounded-full"/>
