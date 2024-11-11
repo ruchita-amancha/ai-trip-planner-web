@@ -53,8 +53,11 @@ function Header() {
         console.error('Error fetching user profile:', error);
       });
   };
+  const navigate=useNavigate()
 
-  
+  const handleRequest=()=>{
+navigate('/create-trip')
+  }
 
 console.log({user})
   return (
@@ -63,9 +66,9 @@ console.log({user})
       <div>
         {user ?
           <div className='flex items-center gap-3'>
-        <Link to={'/create-trip'}>
-            <Button className="cursor-pointer">Get Started, It's Free</Button>
-            </Link>
+        
+            <Button className="cursor-pointer" onClick={handleRequest}>create</Button>
+           
            <Popover>
               <PopoverTrigger>
 
