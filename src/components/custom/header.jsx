@@ -6,7 +6,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover"
 import { googleLogout, useGoogleLogin } from '@react-oauth/google';
-import { Link, useNavigate, useNavigation } from 'react-router-dom';
+import { useNavigate, useNavigation } from 'react-router-dom';
 import {
   Dialog,
   DialogContent,
@@ -63,8 +63,8 @@ console.log({user})
       <div>
         {user ?
           <div className='flex items-center gap-3'>
-            <Link to={"/create-trip"}><Button variant="outline" className="rounded-full text-black  ">+ Create Trip</Button></Link>
-            <Link to={"/my-trips"}><Button variant="outline" className="rounded-full text-black" >My Trips</Button></Link>
+            <a href="/create-trip"><Button variant="outline" className="rounded-full text-black  ">+ Create Trip</Button></a>
+            <a href="/my-trips"><Button variant="outline" className="rounded-full text-black" >My Trips</Button></a>
             <Popover>
               <PopoverTrigger>
 
