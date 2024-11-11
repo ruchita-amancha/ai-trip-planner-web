@@ -6,7 +6,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover"
 import { googleLogout, useGoogleLogin } from '@react-oauth/google';
-import { Link, useNavigate, useNavigation } from 'react-router-dom';
+import { useNavigate, useNavigation } from 'react-router-dom';
 import {
   Dialog,
   DialogContent,
@@ -53,11 +53,8 @@ function Header() {
         console.error('Error fetching user profile:', error);
       });
   };
-  const navigate=useNavigate()
 
-  const handleRequest=()=>{
-navigate('/create-trip')
-  }
+  
 
 console.log({user})
   return (
@@ -66,10 +63,9 @@ console.log({user})
       <div>
         {user ?
           <div className='flex items-center gap-3'>
-        
-            <Button className="cursor-pointer" onClick={handleRequest}>create</Button>
-           
-           <Popover>
+            <a href="/create-trip"><Button variant="outline" className="rounded-full text-black  ">+ Create Trip</Button></a>
+            <a href="/my-trips"><Button variant="outline" className="rounded-full text-black" >My Trips</Button></a>
+            <Popover>
               <PopoverTrigger>
 
                 <img src='/user.png' className="h-[35px] w-[35px] rounded-full"/>
