@@ -6,7 +6,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover"
 import { googleLogout, useGoogleLogin } from '@react-oauth/google';
-import { useNavigate, useNavigation } from 'react-router-dom';
+import { Link, useNavigate, useNavigation } from 'react-router-dom';
 import {
   Dialog,
   DialogContent,
