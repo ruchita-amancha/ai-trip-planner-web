@@ -64,7 +64,7 @@ console.log({user})
         {user ?
           <div className='flex items-center gap-3'>
             
-            <a href="/my-trips"><Button className="rounded-full text-black" >My Trips</Button></a>
+            {/* <a href="/my-trips"><Button className="rounded-full text-black" >My Trips</Button></a> */}
             <Popover>
               <PopoverTrigger>
 
