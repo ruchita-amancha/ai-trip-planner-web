@@ -57,7 +57,7 @@ function CreateTrip() {
 
   const [loading, setLoading] = useState(false)
 
-  const navigate=useNavigate();
+  const navigate = useNavigate();
 
   const handleInputChange = (name, value) => {
     setformData({
@@ -79,7 +79,7 @@ function CreateTrip() {
   });
 
   const OnGenerateTrip = async () => {
-console.log();
+    // console.log(formData);
 
     const user = localStorage.getItem('user');
     if (!user) {
@@ -87,25 +87,62 @@ console.log();
       return
     }
 
-    if (formData.noOfDays > 5 && !formData.location || !formData.budget || !formData.traveler) {
-      toast({
-        title: "Please fill all details",
-        // description: "Friday, February 10, 2023 at 5:57 PM",
-      })
+    const conditions = [
+  {
+    field: 'location',
+    value: formData?.location?.label, // Check if label exists
+    message: 'Please fill in the location',
+  },
+  {
+    field: 'budget',
+    value: formData?.budget, // Check if budget exists
+    message: 'Please fill in the budget',
+  },
+  {
+    field: 'traveler',
+    value: formData?.traveler, // Check if traveler exists
+    message: 'Please fill in the traveler information',
+  },
+  {
+    field: 'traveler',
+    value: formData?.traveler, // Check if traveler exists
+    message: 'Please fill in the traveler information',
+  },
+];
 
-      return;
-    }
+// Run the common validation function
+if (!validateFormData(formData, conditions)) {
+  return; // Stop execution if validation fails
+}
 
     setLoading(true)
     const FINAL_PROMPT = AI_PROMPT.replace('{location}', formData.location.label).replace('{totalDays}', formData.noOfDays).replace('{traveler}', formData.traveler).replace('{budget}', formData.budget).replace('{totalDays}', formData.noOfDays)
     // const demo = ai_demo.replace('{totalDays}', formData.noOfDays).replace('{traveler}', formData.traveler).replace('{location}', formData.location.label).replace('{budget}', formData.budget).replace('{totalDays}', formData.noOfDays)
-    console.log(FINAL_PROMPT);
+    // console.log(FINAL_PROMPT);
 
     const result = await chatSession.sendMessage(FINAL_PROMPT);
-    console.log(result.response.text());
+    // console.log(result.response.text());
     SaveAiTrip(result.response.text());
     setLoading(false)
   }
+
+  const validateFormData = (formData, conditions = []) => {
+  // Check if formData is valid and required fields exist based on conditions
+  for (let condition of conditions) {
+    const { field, value, message } = condition;
+    
+    // Check if the field exists and its value meets the condition
+    if (!value) {
+      toast({
+        title: message || `Please provide a valid ${field}`,
+      });
+      return false; // Return false to indicate invalid form
+    }
+  }
+  return true; // Return true if all conditions are met
+};
+
+
 
   const SaveAiTrip = async (TripData) => {
 
@@ -114,12 +151,12 @@ console.log();
     const docId = Date.now().toString()
     await setDoc(doc(db, "AITrips", docId), {
       userSelection: formData,
-      tripData:JSON.parse(TripData),
+      tripData: JSON.parse(TripData),
       userEmail: user.email,
       id: docId
     });
     setLoading(false)
-    navigate('/view-trip/'+docId)
+    navigate('/view-trip/' + docId)
   }
 
   const GetUserProfile = (tokenInfo) => {
@@ -206,7 +243,7 @@ console.log();
       </div>
 
       <div className='my-10 justify-end flex'>
-        <Button disable={loading} onClick={OnGenerateTrip}>{loading?<AiOutlineLoading3Quarters  className='h-7 w-7 animate-spin'/>:'Generate Trip'}</Button>
+        <Button disable={loading} onClick={OnGenerateTrip}>{loading ? <AiOutlineLoading3Quarters className='h-7 w-7 animate-spin' /> : 'Generate Trip'}</Button>
       </div>
 
       <Dialog open={openDialog}>
