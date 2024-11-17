@@ -54,7 +54,7 @@ function Header() {
       });
   };
 const handleClick = () => {
-  window.location.href = '/my-trips';
+  window.location.href = '/create-trip';
 };
   
 
