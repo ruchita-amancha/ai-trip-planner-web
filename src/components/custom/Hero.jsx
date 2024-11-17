@@ -4,6 +4,7 @@ import { Button } from '../ui/button';
 
 
 function Hero() {
+  const user = JSON.parse(localStorage.getItem('user'));
   return (
     <div className='flex flex-col items-center mx-56 gap-9'>
         <h1 className='font-extrabold text-[50px] text-center mt-16'>
@@ -12,6 +13,9 @@ function Hero() {
             <p className='text-xl text-gray-500 text-center'>Your personal trip planner and travel curator, creating custom itineraries tailored to your interests and budget.</p>
             <Link to={'/create-trip'}>
             <Button className="cursor-pointer">Get Started, It's Free</Button>
+            </Link>
+             <Link to={'/my-trips'}>
+            <Button className="cursor-pointer">My Trips</Button>
             </Link>
 
             <img src="/landing.png" className='-mt-19' />
