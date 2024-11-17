@@ -27,11 +27,11 @@ function Header() {
     console.log(user);
 
   }, [])
-  
+
 
   const [openDialog, setOpenDialog] = useState(false)
 
-   const login = useGoogleLogin({
+  const login = useGoogleLogin({
     onSuccess: tokenResponse => GetUserProfile(tokenResponse),
     onError: error => console.log(error)
   });
@@ -54,37 +54,31 @@ function Header() {
       });
   };
 
-  
 
-console.log({user})
+
+  console.log({ user })
   return (
     <div className='p-2 shadow-sm flex justify-between items-center px-5'>
       <a href="/"><img src="/logo.svg" alt="" /></a>
       <div>
         {user ?
           <div className='flex items-center gap-3'>
-        <Link to={'/create-trip'}>
-            <Button className="cursor-pointer">Get Started, It's Free</Button>
-            </Link>
-           <Popover>
+            <Popover>
               <PopoverTrigger>
-
-                <img src='/user.png' className="h-[35px] w-[35px] rounded-full"/>
+                <img src='/user.png' className="h-[30px] w-[35px] rounded-full" />
               </PopoverTrigger>
               <PopoverContent>
-                
-                <h2 className='cursor-pointer' onClick={()=>{
+                <h2 className='cursor-pointer' onClick={() => {
                   googleLogout();
                   localStorage.clear();
-                  
                   window.location.reload();
                 }}>Logout</h2>
               </PopoverContent>
             </Popover>
 
           </div> :
-          <Button onClick={()=>setOpenDialog(true)}>Sign In</Button>
-          
+          <Button onClick={() => setOpenDialog(true)}>Sign In</Button>
+
         }
       </div>
       <Dialog open={openDialog}>
