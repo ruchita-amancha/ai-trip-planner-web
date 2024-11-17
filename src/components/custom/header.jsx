@@ -54,7 +54,7 @@ function Header() {
       });
   };
 
-
+  
 
   console.log({ user })
   return (
