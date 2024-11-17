@@ -54,7 +54,7 @@ function Header() {
       });
   };
 const handleClick = () => {
-  window.location.href = '/create-trip';
+  window.location.href = '/my-trips';
 };
   
 
@@ -67,24 +67,9 @@ console.log({user})
           <div className='flex items-center gap-3'>
              
 
-<button onClick={handleClick} className="rounded-full text-black">My Trips</button>
-            {/* <a href="/my-trips"><Button className="rounded-full text-black" >My Trips</Button></a> */}
-            <Popover>
-              <PopoverTrigger>
-
-                <img src='/user.png' className="h-[35px] w-[35px] rounded-full"/>
-              </PopoverTrigger>
-              <PopoverContent>
-                
-                <h2 className='cursor-pointer' onClick={()=>{
-                  googleLogout();
-                  localStorage.clear();
-                  
-                  window.location.reload();
-                }}>Logout</h2>
-              </PopoverContent>
-              
-            </Popover>
+<Button onClick={handleClick} className="rounded-full text-black">My Trips</Button>
+            <a href="/my-trips"><Button className="rounded-full text-black" >My Trips</Button></a>
+           
 
           </div> :
           <Button onClick={()=>setOpenDialog(true)}>Sign In</Button>
